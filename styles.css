@@ -41,6 +41,15 @@ body
     top: 15%;
     background-color: black;
     opacity: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo h1
+{
+    color: orange;
+
 }
 
 .right
