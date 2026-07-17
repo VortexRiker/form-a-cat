@@ -1,8 +1,34 @@
+@font-face
+{
+    font-family: "Bitcount";
+    src:    url("/media/fonts/Bitcount.woff2") format("woff2"),
+            url("/media/fonts/Bitcount.woff") format("woff"),
+            url("/media/fonts/Bitcount.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face
+{
+    font-family: "Quantico";
+    src:    url("/media/fonts/Quantico.woff2") format("woff2"),
+            url("/media/fonts/Quantico.woff") format("woff"),
+            url("/media/fonts/Quantico.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root
 {
+    --font-header: "Bitcount", "Roboto", "Arial", sans-serif;
+    --font-regular: "Quantico", sans-serif;
+
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: var(--font-regular);
     font-size: 18px;
+    line-height: 1.5;
 }
 
 *,
