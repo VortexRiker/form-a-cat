@@ -66,7 +66,7 @@ body
     position:absolute;
     top: 15%;
     background-color: black;
-    opacity: 40%;
+    opacity: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,13 +75,21 @@ body
 .logo h1
 {
     color: orange;
+    font-family: var(--font-header);
+    font-size: 2rem;
+}
 
+.cat
+{
+    height: 100%;
+    border: 1px solid red;
 }
 
 .right
 {
     flex: 1 1 60%;
-    background-color: burlywood;
+    /* background-color: #deb887; */
+    background-color: #e0b887;
     display: flex;
     flex-direction: column;
 }
@@ -93,5 +101,5 @@ body
 .right form
 {
     flex: 1 1 30%;
-    background-color: rgb(228, 124, 86); 
+    background-color: #e47c56; 
 }
