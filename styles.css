@@ -36,13 +36,15 @@
 *::after
 {
     box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    /* outline: 1px solid red; */
 }
 
 body
 {
     height: 100vh;
-    margin: 0;
-    padding: 0;
+
     display: flex;
 }
 
@@ -87,18 +89,56 @@ body
 .right
 {
     flex: 1 1 60%;
-    /* background-color: #deb887; */
     background-color: #e0b887;
     display: flex;
     flex-direction: column;
 }
+
+.right > *
+{
+    padding-left: 50px;
+}
+
 .description,
 .control
 {
     flex: 1 1 35%;
 }
-.right form
+.right .sign-up
 {
     flex: 1 1 30%;
-    background-color: #e47c56; 
+    background-color: #e47c56;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
+.sign-up form
+{
+    display: flex;
+    justify-content: start;
+    gap: 70px;
+}
+
+form .row
+{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+form input
+{
+    appearance: none;
+    width: 240px;
+    font-size: 1.1rem;
+    padding: 3px;
+    border: 1px solid indianred;
+    border-radius: 5px;
+}
+
+form label
+{
+    font-size: 0.7rem;
+    margin-top: 10px;
+    margin-bottom: -3px;
 }
