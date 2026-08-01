@@ -25,6 +25,15 @@
     --font-header: "Bitcount", "Roboto", "Arial", sans-serif;
     --font-regular: "Quantico", sans-serif;
 
+    --bg-logo: #000;
+    --bg-color-primary: #e0b887;
+    --bg-color-secondary: #e47c56;
+    
+    --font-color-primary: indianred;
+    --font-color-secondary: bisque;
+    --font-color-error: rgb(81, 1, 1);
+    --font-color-correct: rgb(132, 175, 81);
+
     box-sizing: border-box;
     font-family: var(--font-regular);
     font-size: 18px;
@@ -51,7 +60,7 @@ body
 .left
 {
     flex: 1 1 40%;
-    background-color:orange;
+    background-color: var(--bg-color-primary);
     position: relative;
 }
 
@@ -67,7 +76,7 @@ body
     height:20%;
     position:absolute;
     top: 15%;
-    background-color: black;
+    background-color: var(--bg-logo);
     opacity: 50%;
     display: flex;
     justify-content: center;
@@ -76,7 +85,7 @@ body
 
 .logo h1
 {
-    color: orange;
+    color: var(--font-color-primary);
     font-family: var(--font-header);
     font-size: 2rem;
 }
@@ -89,7 +98,7 @@ body
 .right
 {
     flex: 1 1 60%;
-    background-color: #e0b887;
+    background-color: var(--bg-color-primary);
     display: flex;
     flex-direction: column;
 }
@@ -107,11 +116,18 @@ body
 .right .sign-up
 {
     flex: 1 1 30%;
-    background-color: #e47c56;
+    background-color: var(--bg-color-secondary);
     display: flex;
     flex-direction: column;
     padding-top: 15px;
 }
+
+.sign-up h2
+{
+    font-size: 1.8rem;
+    color: var(--font-color-secondary);
+}
+
 .sign-up form
 {
     display: flex;
@@ -128,17 +144,38 @@ form .row
 
 form input
 {
-    appearance: none;
     width: 240px;
     font-size: 1.1rem;
     padding: 3px;
-    border: 1px solid indianred;
+    border: 3px solid var(--font-color-primary);
     border-radius: 5px;
+    background-color: var(--font-color-secondary);
+    box-shadow: inset 0 0 5px rgb(70, 69, 69);
 }
+form input:user-invalid
+{
+    box-shadow: 0 0 10px var(--font-color-error);
+}
+form input:focus
+{
+    outline: 1px solid var(--font-color-primary);
+    background-color: var(--bg-color-primary);
+}
+
+
+label:has(+ input:required)::after
+{
+    content: "*";
+}
+label:has(+ input:user-invalid)
+{
+    color: var(--font-color-error);
+}
+
 
 form label
 {
     font-size: 0.7rem;
     margin-top: 10px;
-    margin-bottom: -3px;
+    color: var(--font-color-secondary);
 }
