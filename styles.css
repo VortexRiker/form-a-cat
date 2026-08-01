@@ -25,11 +25,15 @@
     --font-header: "Bitcount", "Roboto", "Arial", sans-serif;
     --font-regular: "Quantico", sans-serif;
 
-    --bg-logo: #000;
+    --bg-color-logo: #000;
     --bg-color-primary: #e0b887;
     --bg-color-secondary: #e47c56;
+    --bg-color-error: #e08787;
+
+    --shadow-color: #323131;
     
     --font-color-primary: indianred;
+    --font-color-primary-dim: rgb(144, 64, 64);
     --font-color-secondary: bisque;
     --font-color-error: rgb(81, 1, 1);
     --font-color-correct: rgb(132, 175, 81);
@@ -76,7 +80,7 @@ body
     height:20%;
     position:absolute;
     top: 15%;
-    background-color: var(--bg-logo);
+    background-color: var(--bg-color-logo);
     opacity: 50%;
     display: flex;
     justify-content: center;
@@ -150,18 +154,21 @@ form input
     border: 3px solid var(--font-color-primary);
     border-radius: 5px;
     background-color: var(--font-color-secondary);
-    box-shadow: inset 0 0 5px rgb(70, 69, 69);
+    color: var(--font-color-primary);
+    box-shadow: inset 0 0 5px var(--shadow-color);
 }
 form input:user-invalid
 {
     box-shadow: 0 0 10px var(--font-color-error);
+    background-color: var(--bg-color-error);
+    color: var(--font-color-error);
 }
 form input:focus
 {
     outline: 1px solid var(--font-color-primary);
     background-color: var(--bg-color-primary);
+    color: var(--font-color-primary-dim);
 }
-
 
 label:has(+ input:required)::after
 {
