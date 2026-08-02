@@ -28,6 +28,8 @@
     --bg-color-logo: #000;
     --bg-color-primary: #e0b887;
     --bg-color-secondary: #e47c56;
+    --bg-color-secondary-dim: indianred;
+    --bg-color-secondary-bright: #e49156;
     --bg-color-error: #e08787;
 
     --shadow-color: #323131;
@@ -35,6 +37,8 @@
     --font-color-primary: indianred;
     --font-color-primary-dim: rgb(144, 64, 64);
     --font-color-secondary: bisque;
+    --font-color-secondary-dim: rgb(232, 208, 178);
+    --font-color-secondary-bright: rgb(255, 255, 255);
     --font-color-error: rgb(81, 1, 1);
     --font-color-correct: rgb(132, 175, 81);
 
@@ -117,19 +121,21 @@ body
 {
     flex: 1 1 35%;
 }
+
 .right .sign-up
 {
     flex: 1 1 30%;
+    padding-top: 15px;
     background-color: var(--bg-color-secondary);
     display: flex;
     flex-direction: column;
-    padding-top: 15px;
 }
 
 .sign-up h2
 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--font-color-secondary);
+    padding: 0;
 }
 
 .sign-up form
@@ -179,10 +185,42 @@ label:has(+ input:user-invalid)
     color: var(--font-color-error);
 }
 
-
 form label
 {
     font-size: 0.7rem;
     margin-top: 10px;
     color: var(--font-color-secondary);
+}
+
+.control
+{
+    padding-top: 30px;
+    display: flex;
+    align-items:start;  
+    flex-direction: column;
+    gap: 25px;
+}
+.control button
+{
+    padding: 10px 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--bg-color-secondary);
+    color: var(--font-color-secondary);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 6px var(--shadow-color);
+}
+
+.control button:hover
+{
+    background-color: var(--bg-color-secondary-bright);
+    box-shadow: 0 0 9px var(--shadow-color);
+    color: var(--font-color-secondary-bright);
+}
+.control button:active
+{
+    background-color: var(--bg-color-secondary-dim);
+    color: var(--font-color-secondary-dim);
+    box-shadow: 0 0 3px var(--shadow-color);
 }

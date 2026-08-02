@@ -77,38 +77,44 @@
         </div>
         <section class="sign-up">
             <h2>Let's do this!</h2>
-            <form action="#" method="get">
+            <form id="sign-up-form" action="#" method="get">
                 <ul class="column">
                     <li class="row">
                         <label for="first-name">FIRST NAME</label>
-                        <div class="wrapper"><input type="text" name="first-name" id="first-name" required></div>
+                        <input type="text" name="first-name" id="first-name" required>
                     </li>
                     <li class="row">
                         <label for="email">EMAIL</label>
-                        <div class="wrapper"><input type="email" name="email" id="email" required></div>
+                        <input type="email" name="email" id="email" required>
                     </li>
                     <li class="row">
                         <label for="password">PASSWORD</label>
-                        <div class="wrapper"><input type="password" name="password" id="password" required></div>
+                        <input type="password" name="password" id="password" required>
                     </li>
                 </ul>
                 <ul class="column">
                     <li class="row">
                         <label for="last-name">LAST NAME</label>
-                        <div class="wrapper"><input type="text" name="last-name" id="last-name"></div>
+                        <input type="text" name="last-name" id="last-name">
                     </li>
                     <li class="row">
                         <label for="phone">PHONE NUMBER</label>
-                        <div class="wrapper"><input type="tel" name="phone" id="phone"></div>
+                        <input type="tel" name="phone" id="phone">
                     </li>
                     <li class="row">
                         <label for="password-confirm">CONFIRM PASSWORD</label>
-                        <div class="wrapper"><input type="password" name="password-confirm" id="password-confirm" required></div>
+                        <input type="password" name="password-confirm" id="password-confirm" required>
                     </li>
                 </ul>
             </form>
         </section>
-        <div class="control"></div>
+        <div class="control">
+            <button type="submit" form="sign-up-form">Create Account</button>
+            <p>
+                Already have an account?
+                <a href="http://" target="_blank" rel="noopener noreferrer">Login</a>
+            </p> 
+        </div>
     </main>  
 </body>
 </html>
