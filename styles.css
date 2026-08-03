@@ -93,6 +93,7 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 50px;
 }
 
 .logo h1
@@ -267,4 +268,12 @@ form label
 .control a:active
 {
     color: var(--bg-color-button-active);
+}
+
+@media(max-width: 1450px)
+{
+    .logo h1
+    {
+        display: none;
+    }
 }
