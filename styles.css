@@ -32,6 +32,10 @@
     --bg-color-secondary-bright: #e49156;
     --bg-color-error: #e08787;
 
+    --bg-color-button: olive;
+    --bg-color-button-hover: rgb(161, 161, 1);
+    --bg-color-button-active: rgb(88, 88, 1);
+
     --shadow-color: #323131;
     
     --font-color-primary: indianred;
@@ -95,7 +99,7 @@ body
 {
     color: var(--font-color-primary);
     font-family: var(--font-header);
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .cat
@@ -120,6 +124,25 @@ body
 .control
 {
     flex: 1 1 35%;
+}
+
+.description
+{
+    padding-top: 80px;
+    padding-right: 50px;
+    font-size: 1.1rem;
+    color: var(--font-color-primary-dim);
+}
+
+.description .conclusion
+{
+    font-style: italic;
+}
+
+.description .call-to-action
+{
+    margin-top: 20px;
+    font-weight: bold;
 }
 
 .right .sign-up
@@ -200,12 +223,13 @@ form label
     flex-direction: column;
     gap: 25px;
 }
+
 .control button
 {
     padding: 10px 50px;
     font-size: 1rem;
     font-weight: bold;
-    background-color: var(--bg-color-secondary);
+    background-color: var(--bg-color-button);
     color: var(--font-color-secondary);
     border: none;
     border-radius: 5px;
@@ -214,13 +238,33 @@ form label
 
 .control button:hover
 {
-    background-color: var(--bg-color-secondary-bright);
+    background-color: var(--bg-color-button-hover);
     box-shadow: 0 0 9px var(--shadow-color);
     color: var(--font-color-secondary-bright);
 }
 .control button:active
 {
-    background-color: var(--bg-color-secondary-dim);
+    background-color: var(--bg-color-button-active);
     color: var(--font-color-secondary-dim);
     box-shadow: 0 0 3px var(--shadow-color);
+}
+
+.control p
+{
+    font-size: 0.9rem;
+    color: var(--font-color-primary-dim)
+}
+
+.control a
+{
+    text-decoration: none;
+    color: var(--bg-color-button);
+}
+.control a:hover
+{
+    color: var(--bg-color-button-hover);
+}
+.control a:active
+{
+    color: var(--bg-color-button-active);
 }
