@@ -271,9 +271,16 @@ form label
     color: var(--bg-color-button-active);
 }
 
-@media(max-width: 1450px)
+@media(max-width: 1780px)
 {
     .logo h1
+    {
+        display: none;
+    }
+}
+@media(max-width: 1200px)
+{
+    .left
     {
         display: none;
     }
