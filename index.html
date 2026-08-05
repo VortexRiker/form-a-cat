@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form A Cat</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="script.js"></script>
+    <script type="module" src="scripts/eye-movement.js"></script>
+    <script type="module" src="scripts/pwd-validation.js"></script>
 </head>
 <body>
     <div class="left">
@@ -77,12 +78,12 @@
             <p class="call-to-action">Signup for our 10-step cat transformation program today, and start coughing up those furballs tommorrow!</p>
         </div>
         <section class="sign-up">
-            <h2>Let's do this!</h2>
+            <h2>Let's get meowing!</h2>
             <form id="sign-up-form" action="#" method="get">
                 <ul class="column">
                     <li class="row">
                         <label for="first-name">FIRST NAME</label>
-                        <input type="text" name="first-name" id="first-name" required>
+                        <input type="text" name="first-name" id="first-name" minlength="2" required>
                     </li>
                     <li class="row">
                         <label for="email">EMAIL</label>
@@ -90,17 +91,17 @@
                     </li>
                     <li class="row">
                         <label for="password">PASSWORD</label>
-                        <input type="password" name="password" id="password" required>
+                        <input type="password" name="password" id="password" minlength="6" required>
                     </li>
                 </ul>
                 <ul class="column">
                     <li class="row">
                         <label for="last-name">LAST NAME</label>
-                        <input type="text" name="last-name" id="last-name">
+                        <input type="text" name="last-name" id="last-name" minlength="2">
                     </li>
                     <li class="row">
                         <label for="phone">PHONE NUMBER</label>
-                        <input type="tel" name="phone" id="phone">
+                        <input type="tel" name="phone" id="phone" pattern="\+?[0-9-]+">
                     </li>
                     <li class="row">
                         <label for="password-confirm">CONFIRM PASSWORD</label>
