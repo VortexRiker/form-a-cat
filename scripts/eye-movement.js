@@ -1,5 +1,12 @@
-function getEyeCenter(side)
-{
+const ANGRY_EYE_COLOR = "#f5bdbd";
+const ANGRY_IRIS_COLOR = "#F00";
+const DEFAULT_EYE_COLOR = "#f5f5dc";
+const DEFAULT_IRIS_COLOR = "#E47C56";
+
+let trackEyeMovement = true;
+
+
+function getEyeCenter(side) {
     const eye = document.querySelector(`.eye${side}`);
 
     const boundingBox = eye.getBoundingClientRect();
@@ -12,16 +19,14 @@ function getEyeCenter(side)
     };
 }
 
-function getMouseCoordinates(event)
-{
+function getMouseCoordinates(event) {
     return {
         x: event.clientX,
         y: event.clientY
     }
 }
 
-function getDelta(event, side)
-{
+function getDelta(event, side) {
     const mouse = getMouseCoordinates(event);
     const center = getEyeCenter(side);
 
@@ -31,8 +36,7 @@ function getDelta(event, side)
     }
 }
 
-function getDirection(event, side)
-{
+function getDirection(event, side) {
     const delta = getDelta(event, side);
     const length = Math.hypot(delta.x, delta.y);
 
@@ -42,8 +46,7 @@ function getDirection(event, side)
     }
 }
 
-function getSize(object)
-{
+function getSize(object) {
     const width = Number(object.getAttribute("width"));
     const height = Number(object.getAttribute("height"));
 
@@ -53,22 +56,19 @@ function getSize(object)
     }
 }
 
-function getEyeSize()
-{
+function getEyeSize() {
     const eye = document.querySelector(".eye");
 
     return getSize(eye);
 }
 
-function getIrisSize()
-{
+function getIrisSize() {
     const iris = document.querySelector(".iris");
 
     return getSize(iris);
 }
 
-function getMaxIrisMovement()
-{
+function getMaxIrisMovement() {
     const eyeSize = getEyeSize();
     const irisSize = getIrisSize();
 
@@ -78,7 +78,7 @@ function getMaxIrisMovement()
     }
 }
 
-function isMouseInside(event, side)
+function isMouseInside(event, side) 
 {
     const mouse = getMouseCoordinates(event);
     const eye = document.querySelector(`.eye${side}`);
@@ -87,11 +87,11 @@ function isMouseInside(event, side)
     return (mouse.x > boundingBox.left && mouse.x < boundingBox.right) && (mouse.y > boundingBox.top && mouse.y < boundingBox.bottom)
 }
 
-function getIrisDisplacement(event, side)
+function getIrisDisplacement(event, side) 
 {
-    if(isMouseInside(event, side))
+    if (isMouseInside(event, side)) 
     {
-        return {
+        return{
             x: 0,
             y: 0
         }
@@ -106,34 +106,83 @@ function getIrisDisplacement(event, side)
     }
 }
 
-function applyTransform(displacement, side)
+function applyTransform(displacement, side) 
 {
     const iris = document.querySelector(`.iris${side}`);
     iris.setAttribute("transform", `translate(${displacement.x}, ${displacement.y})`);
 }
 
-function moveEye(event, side)
+function moveEye(event, side) 
 {
     const displacement = getIrisDisplacement(event, side);
     applyTransform(displacement, side);
 }
 
-function moveLeftEye(event)
+function moveLeftEye(event) 
 {
     const left = ".left";
     moveEye(event, left);
 }
 
-function moveRightEye(event)
+function moveRightEye(event) 
 {
     const right = ".right";
     moveEye(event, right);
 }
 
-function followMouse(event)
+function resetEyePosition()
 {
-   moveLeftEye(event);
-   moveRightEye(event);
+    applyTransform(0, ".left");
+    applyTransform(0, ".right");
+}
+
+function followMouse(event) {
+    if (trackEyeMovement) 
+    {
+        moveLeftEye(event);
+        moveRightEye(event);
+    }
+    else
+    {
+        resetEyePosition();
+    }
+}
+
+function changeEyeColor(eyeColor = DEFAULT_EYE_COLOR, irisColor = DEFAULT_IRIS_COLOR) 
+{
+    const eyes = document.querySelectorAll(".eye");
+    eyes.forEach(eye => eye.setAttribute("fill", eyeColor));
+
+    const irises = document.querySelectorAll(".iris");
+    irises.forEach(iris => iris.setAttribute("fill", irisColor));
+}
+
+function hasInvalidFormFields()
+{
+    const form = document.getElementById("sign-up-form");
+
+    return form.querySelectorAll(":user-invalid").length;
+}
+
+function updateEyeProperties()
+{
+    if (hasInvalidFormFields()) 
+    {
+        trackEyeMovement = false;
+        changeEyeColor(ANGRY_EYE_COLOR, ANGRY_IRIS_COLOR);
+    }
+    else 
+    {
+        trackEyeMovement = true;
+        changeEyeColor();
+    }
+}
+
+function addFormListener() {
+    const form = document.getElementById("sign-up-form");
+
+    form.addEventListener("change", updateEyeProperties)
 }
 
 document.addEventListener("mousemove", followMouse);
+addFormListener();
