@@ -1,10 +1,9 @@
-const ANGRY_EYE_COLOR = "#f5bdbd";
-const ANGRY_IRIS_COLOR = "#F00";
+const ERROR_EYE_COLOR = "#650000";
+const ERROR_IRIS_COLOR = "#F00";
 const DEFAULT_EYE_COLOR = "#f5f5dc";
 const DEFAULT_IRIS_COLOR = "#E47C56";
 
 let trackEyeMovement = true;
-
 
 function getEyeCenter(side) {
     const eye = document.querySelector(`.eye${side}`);
@@ -106,45 +105,35 @@ function getIrisDisplacement(event, side)
     }
 }
 
-function applyTransform(displacement, side) 
+function applyIrisTransform(side, dX = 0, dY = 0) 
 {
-    const iris = document.querySelector(`.iris${side}`);
-    iris.setAttribute("transform", `translate(${displacement.x}, ${displacement.y})`);
+    const irises = document.querySelectorAll(`.iris${side}`);
+    irises.forEach(iris => iris.setAttribute("transform", `translate(${dX}, ${dY})`));
+    
 }
 
 function moveEye(event, side) 
 {
     const displacement = getIrisDisplacement(event, side);
-    applyTransform(displacement, side);
+    applyIrisTransform(side, displacement.x, displacement.y);
 }
 
-function moveLeftEye(event) 
+function moveEyes(event)
 {
-    const left = ".left";
-    moveEye(event, left);
-}
-
-function moveRightEye(event) 
-{
-    const right = ".right";
-    moveEye(event, right);
+    moveEye(event, ".left");
+    moveEye(event, ".right");
 }
 
 function resetEyePosition()
 {
-    applyTransform(0, ".left");
-    applyTransform(0, ".right");
+    applyIrisTransform(".left");
+    applyIrisTransform(".right");
 }
 
 function followMouse(event) {
     if (trackEyeMovement) 
     {
-        moveLeftEye(event);
-        moveRightEye(event);
-    }
-    else
-    {
-        resetEyePosition();
+        moveEyes(event);
     }
 }
 
@@ -168,20 +157,28 @@ function updateEyeProperties()
 {
     if (hasInvalidFormFields()) 
     {
+        changeEyeColor(ERROR_EYE_COLOR, ERROR_IRIS_COLOR);
+        resetEyePosition();
         trackEyeMovement = false;
-        changeEyeColor(ANGRY_EYE_COLOR, ANGRY_IRIS_COLOR);
     }
     else 
     {
-        trackEyeMovement = true;
         changeEyeColor();
+        trackEyeMovement = true;
     }
 }
 
 function addFormListener() {
     const form = document.getElementById("sign-up-form");
 
-    form.addEventListener("change", updateEyeProperties)
+    // Two listeners are required to fire the logic consistently
+
+    // Change event process situations where user clicks away from the form
+    form.addEventListener("change", updateEyeProperties);
+    // Invalid event process situations where user presses enter to send form for validation
+    // This event does not bubble up so it requires a capturing flag
+    // for form to be able to catch invalidated fields
+    form.addEventListener("invalid", updateEyeProperties, true);
 }
 
 document.addEventListener("mousemove", followMouse);
