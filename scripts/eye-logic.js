@@ -5,7 +5,8 @@ const DEFAULT_IRIS_COLOR = "#E47C56";
 
 let trackEyeMovement = true;
 
-function getEyeCenter(side, logoClass) {
+function getEyeCenter(side, logoClass) 
+{
     const eye = document.querySelector(`${logoClass} .eye${side}`);
 
     const boundingBox = eye.getBoundingClientRect();
@@ -18,14 +19,16 @@ function getEyeCenter(side, logoClass) {
     };
 }
 
-function getMouseCoordinates(event) {
+function getMouseCoordinates(event) 
+{
     return {
         x: event.clientX,
         y: event.clientY
     }
 }
 
-function getDelta(event, side, logoClass) {
+function getDelta(event, side, logoClass) 
+{
     const mouse = getMouseCoordinates(event);
     const center = getEyeCenter(side, logoClass);
 
@@ -35,7 +38,8 @@ function getDelta(event, side, logoClass) {
     }
 }
 
-function getDirection(event, side, logoClass) {
+function getDirection(event, side, logoClass) 
+{
     const delta = getDelta(event, side, logoClass);
     const length = Math.hypot(delta.x, delta.y);
 
@@ -45,7 +49,8 @@ function getDirection(event, side, logoClass) {
     }
 }
 
-function getSize(object) {
+function getSize(object) 
+{
     const width = Number(object.getAttribute("width"));
     const height = Number(object.getAttribute("height"));
 
@@ -55,19 +60,22 @@ function getSize(object) {
     }
 }
 
-function getEyeSize() {
+function getEyeSize() 
+{
     const eye = document.querySelector(".eye");
 
     return getSize(eye);
 }
 
-function getIrisSize() {
+function getIrisSize() 
+{
     const iris = document.querySelector(".iris");
 
     return getSize(iris);
 }
 
-function getMaxIrisMovement() {
+function getMaxIrisMovement() 
+{
     const eyeSize = getEyeSize();
     const irisSize = getIrisSize();
 
@@ -90,7 +98,7 @@ function getIrisDisplacement(event, side, logoClass)
 {
     if (isMouseInside(event, side, logoClass)) 
     {
-        return{
+        return {
             x: 0,
             y: 0
         }
@@ -152,7 +160,8 @@ function resetEyePosition()
     applyIrisTransform(".right", logoClass);
 }
 
-function followMouse(event) {
+function followMouse(event) 
+{
     if (trackEyeMovement) 
     {
         moveEyes(event);
