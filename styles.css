@@ -65,18 +65,17 @@
 body
 {
     height: 100vh;
-
     display: flex;
 }
 
-.left
+.left-side
 {
     flex: 1 1 35%;
     background-color: var(--bg-color-primary);
     position: relative;
 }
 
-.left img
+.left-side img
 {
     width: 100%;
     height: 100%;
@@ -84,23 +83,33 @@ body
 
 .logo
 {
-    padding-left:25px;
-    width:100%;
-    height:25%;
-    position:absolute;  
+    position: absolute;  
     top: 2%;
     background-color: var(--bg-color-logo);
     opacity: 60%;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 30px;
+}
+
+.left-side .logo
+{
+    justify-content: center;
+
+    padding-left:25px;
+    width:100%;
+    height:25%; 
 }
 
 .logo h1
 {
     color: var(--font-color-primary);
     font-family: var(--font-header);
+    
+}
+
+.left-side .logo h1
+{
     font-size: 3rem;
 }
 
@@ -109,17 +118,33 @@ body
     height: 100%;
 }
 
-.right
+.right-side
 {
+    position: relative;
     flex: 1 1 60%;
     background-color: var(--bg-color-primary);
     display: flex;
     flex-direction: column;
 }
 
-.right > *
+.right-side > *
 {
     padding-left: 50px;
+}
+
+.right-side .logo
+{
+    display: none;
+    width: 100%;
+    height: 7%;
+    position: absolute;
+    top: 1%;
+}
+
+.right-side .logo h1
+{
+    padding-top: 10px;
+    font-size: 2rem;
 }
 
 .description,
@@ -147,7 +172,7 @@ body
     font-weight: bold;
 }
 
-.right .sign-up
+.right-side .sign-up
 {
     flex: 1 1 30%;
     padding-top: 15px;
@@ -273,15 +298,19 @@ form label
 
 @media(max-width: 1780px)
 {
-    .logo h1
+    .left-side .logo h1
     {
         display: none;
     }
 }
 @media(max-width: 1200px)
 {
-    .left
+    .left-side
     {
         display: none;
+    }
+    .right-side .logo
+    {
+        display: flex;
     }
 }
