@@ -5,8 +5,8 @@ const DEFAULT_IRIS_COLOR = "#E47C56";
 
 let trackEyeMovement = true;
 
-function getEyeCenter(side) {
-    const eye = document.querySelector(`.eye${side}`);
+function getEyeCenter(side, logoClass) {
+    const eye = document.querySelector(`${logoClass} .eye${side}`);
 
     const boundingBox = eye.getBoundingClientRect();
     const centerX = boundingBox.right - boundingBox.width / 2;
@@ -25,9 +25,9 @@ function getMouseCoordinates(event) {
     }
 }
 
-function getDelta(event, side) {
+function getDelta(event, side, logoClass) {
     const mouse = getMouseCoordinates(event);
-    const center = getEyeCenter(side);
+    const center = getEyeCenter(side, logoClass);
 
     return {
         x: mouse.x - center.x,
@@ -35,8 +35,8 @@ function getDelta(event, side) {
     }
 }
 
-function getDirection(event, side) {
-    const delta = getDelta(event, side);
+function getDirection(event, side, logoClass) {
+    const delta = getDelta(event, side, logoClass);
     const length = Math.hypot(delta.x, delta.y);
 
     return {
@@ -77,18 +77,18 @@ function getMaxIrisMovement() {
     }
 }
 
-function isMouseInside(event, side) 
+function isMouseInside(event, side, logoClass) 
 {
     const mouse = getMouseCoordinates(event);
-    const eye = document.querySelector(`.eye${side}`);
+    const eye = document.querySelector(`${logoClass} .eye${side}`);
     const boundingBox = eye.getBoundingClientRect();
 
     return (mouse.x > boundingBox.left && mouse.x < boundingBox.right) && (mouse.y > boundingBox.top && mouse.y < boundingBox.bottom)
 }
 
-function getIrisDisplacement(event, side) 
+function getIrisDisplacement(event, side, logoClass) 
 {
-    if (isMouseInside(event, side)) 
+    if (isMouseInside(event, side, logoClass)) 
     {
         return{
             x: 0,
@@ -96,7 +96,7 @@ function getIrisDisplacement(event, side)
         }
     }
 
-    const direction = getDirection(event, side);
+    const direction = getDirection(event, side, logoClass);
     const move = getMaxIrisMovement();
 
     return {
@@ -105,29 +105,51 @@ function getIrisDisplacement(event, side)
     }
 }
 
-function applyIrisTransform(side, dX = 0, dY = 0) 
+function applyIrisTransform(side, logoClass, dX = 0, dY = 0) 
 {
-    const irises = document.querySelectorAll(`.iris${side}`);
-    irises.forEach(iris => iris.setAttribute("transform", `translate(${dX}, ${dY})`));
-    
+    const iris = document.querySelector(`${logoClass} .iris${side}`);
+    iris.setAttribute("transform", `translate(${dX}, ${dY})`);
 }
 
-function moveEye(event, side) 
+function moveEye(event, side, logoClass) 
 {
-    const displacement = getIrisDisplacement(event, side);
-    applyIrisTransform(side, displacement.x, displacement.y);
+    const displacement = getIrisDisplacement(event, side, logoClass);
+    applyIrisTransform(side, logoClass, displacement.x, displacement.y);
+}
+
+function isMainLogoVisible()
+{
+    const leftPanel = document.querySelector(".left-side");
+
+    return leftPanel.checkVisibility();
+}
+
+function getActiveLogoClass()
+{
+    let activePanel = ".left-side"
+    if  (!isMainLogoVisible())
+    {
+        activePanel = ".right-side";
+    }
+
+    return activePanel
 }
 
 function moveEyes(event)
 {
-    moveEye(event, ".left");
-    moveEye(event, ".right");
+    
+    const logoClass = getActiveLogoClass();
+
+    moveEye(event, ".left", logoClass);
+    moveEye(event, ".right", logoClass);
 }
 
 function resetEyePosition()
 {
-    applyIrisTransform(".left");
-    applyIrisTransform(".right");
+    const logoClass = getActiveLogoClass();
+
+    applyIrisTransform(".left", logoClass);
+    applyIrisTransform(".right", logoClass);
 }
 
 function followMouse(event) {
@@ -173,9 +195,9 @@ function addFormListener() {
 
     // Two listeners are required to fire the logic consistently
 
-    // Change event process situations where user clicks away from the form
+    // "change" event process situations where user clicks away from the form
     form.addEventListener("change", updateEyeProperties);
-    // Invalid event process situations where user presses enter to send form for validation
+    // "invalid" event process situations where user presses enter to send form for validation
     // This event does not bubble up so it requires a capturing flag
     // for form to be able to catch invalidated fields
     form.addEventListener("invalid", updateEyeProperties, true);
