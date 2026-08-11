@@ -68,6 +68,21 @@ body
     background-color: var(--bg-color-primary);
 }
 
+body.confirmation-page
+{
+    justify-content: center;
+    align-items:center;
+}
+
+.message
+{
+    width: 50%;
+    height: 50%;
+    display:flex;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
 .redacted
 {
     font-family: sans-serif; 
@@ -91,11 +106,16 @@ body
 {
     position: absolute;  
     top: 2%;
+    display: flex;
+}
+
+.logo,
+.message
+{
     background-color: var(--bg-color-logo);
     opacity: 60%;
-    display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 5px;
 }
 
 .left-side .logo
@@ -107,15 +127,24 @@ body
     height:25%; 
 }
 
-.logo h1
+.logo h1,
+.message h1
 {
     color: var(--font-color-primary);
     font-family: var(--font-header);   
 }
 
-.left-side .logo h1
+.left-side .logo h1,
+.message h1
 {
     font-size: 3rem;
+}
+
+.message p
+{
+    color: var(--font-color-primary);
+    font-family: var(--font-regular);
+    font-size: 2rem;
 }
 
 .cat
