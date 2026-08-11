@@ -68,6 +68,11 @@ body
     background-color: var(--bg-color-primary);
 }
 
+.redacted
+{
+    font-family: sans-serif; 
+    text-decoration: line-through;
+}
 .left-side
 {
     flex: 1 1 35%;
