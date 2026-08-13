@@ -12,5 +12,9 @@ Form A Cat is a project that aims to show basic usage of HTML forms: their struc
 
 Additionally to forms, project uses other new features that were present in the curriculum, such as: custom font usage, SVG's and their formatting, custom element positioning, advanced selectors, and custom CSS properties.
 
+## Credits
 
+All photos belong to Boris the Cat.
+
+SVG used: https://github.com/VortexRiker/cat-logo
 
