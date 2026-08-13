@@ -26,6 +26,7 @@
     --font-regular: "Quantico", sans-serif;
 
     --bg-color-logo: #000;
+    --bg-transparent-color-logo: rgba(0, 0, 0, 0.75);
     --bg-color-primary: #e0b887;
     --bg-color-secondary: #e47c56;
     --bg-color-secondary-dim: indianred;
@@ -61,6 +62,11 @@
     padding: 0;
 }
 
+img
+{
+    display: block;
+}
+
 body
 {
     height: 100vh;
@@ -76,11 +82,21 @@ body.confirmation-page
 
 .message
 {
-    width: 50%;
-    height: 50%;
+    min-width: 50%;
+    min-height: 70%;
     display:flex;
     flex-direction: column;
     border-radius: 15px;
+    background: var(--bg-transparent-color-logo);
+    padding: 15px
+}
+
+.message img
+{
+    width: 50%;
+    height: 70%;
+    border: 3px solid var(--font-color-primary);
+    border-radius: 50%;
 }
 
 .redacted
@@ -97,7 +113,6 @@ body.confirmation-page
 
 .left-side img
 {
-    display: block;
     width: 100%;
     height: 100%;
 }
@@ -107,13 +122,13 @@ body.confirmation-page
     position: absolute;  
     top: 2%;
     display: flex;
+    background-color: var(--bg-color-logo);
+    opacity: 60%;
 }
 
 .logo,
 .message
 {
-    background-color: var(--bg-color-logo);
-    opacity: 60%;
     align-items: center;
     gap: 5px;
 }
@@ -193,6 +208,7 @@ body.confirmation-page
     padding-right: 50px;
     font-size: 1.1rem;
     color: var(--font-color-primary-dim);
+    padding-bottom: 30px;
 }
 
 .description .conclusion
@@ -213,6 +229,7 @@ body.confirmation-page
     background-color: var(--bg-color-secondary);
     display: flex;
     flex-direction: column;
+    padding-bottom: 30px;
 }
 
 .sign-up h2
@@ -346,5 +363,6 @@ form label
     .right-side .logo
     {
         display: flex;
+        gap: 30px;
     }
 }
